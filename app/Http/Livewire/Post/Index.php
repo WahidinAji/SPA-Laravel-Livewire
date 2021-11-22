@@ -9,14 +9,21 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
-    public $search;
+    public $search = '';
     public $message = 'Hello World!';
     protected $paginationTheme = 'bootstrap';
-    protected $queryString = ['search'];
+    protected $queryString = ['search' => ['except' => '']];
     public function render()
     {
-        $posts = Post::orderBy('id', 'desc')->where('title', 'like', "%{$this->search}%")->paginate(10);
+        // $posts = Post::orderBy('id', 'desc')->where('title', 'like', '%' . $this->search . '%')->paginate(10);
+        $posts = Post::orderBy('id', 'desc');
+        if (empty(request()->has('search'))) {
+            $posts = $posts->where('title', 'like', "%{$this->search}%");
+            // $posts = $posts->where('title', 'like', '%' . $this->search . '%');
+        } else {
+            $posts = $posts;
+        }
+        $posts = $posts->paginate(10);
         return view('livewire.post.index', compact('posts'))->extends('layouts.app');
-        // return view('livewire.post.index', compact('posts'));
     }
 }
