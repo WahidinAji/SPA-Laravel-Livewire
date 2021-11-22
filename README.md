@@ -1,5 +1,5 @@
 # Watch this video if u want to see the demo.
-- [Demo, record by loom.com](https://www.loom.com/share/bf24116ca9474abda3edec0c03b0a914).
+- [Demo, record by loom.com](https://loom.com/share/b203336e8a2c4fe88ab8835bb40ea3bb).
 
 ## Setup
 ```bash
